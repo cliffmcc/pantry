@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<body>
+    <form method=post>
+        <div class="grid-x grid-padding-x">
+          <div class="large-12 cell">
+              <h3>Edit Item</h3><label>Scan UPC</label>
+          </div>
+          <div class="large-6 cell">
+            <input type="text" name="brand" id="brandInput" value="{{ g.edit_product.brand }}"/>
+            <input type="text" name="name" id="nameInput" value="{{ g.edit_product.name}}"/>
+            <input type="text" name="thumbnail" id="thumbnailInput" value="{{ g.edit_product.thumbnail }}"/>
+          </div>
+          <div class="large-6 cell edit-image">
+            <img src="{{ g.edit_product.thumbnail }}"/>
+          </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="large-6 cell">
+                <input type=submit class="button primary large expanded" value="Save Item"/>
+              </div>
+              <div class="large-6 cell">
+                  <a href="{{ url_for('home') }}" class="button secondary large expanded">Cancel</a>
+              </div>
+        </div>
+    </form>
+</body>
+{% endblock %}
+
+

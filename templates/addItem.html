@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<script type="text/javascript">
+    function FocusOnInput()
+    {
+        document.getElementById("upcInput").focus();
+    }
+
+</script>
+
+<body onload="FocusOnInput()">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pantry.css') }}"/>
+
+    <form method=post>
+        <div class="grid-x grid-padding-x">
+          <div id="scanBox" class="large-12 cell">
+              <h3>Add Item</h3>
+            <label>Scan UPC</label>
+            <input type="text" name="upc" id="upcInput"/>
+          </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            {% if session['add_name'] %}
+                <p>Added: <strong>{{session['add_upc']}}</strong>. Brand: {{session['add_brand']}}  Name: {{session['add_name']}}</p>
+                <img src="{{session['add_thumbnail']}}"/>
+            {% endif %}
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="large-6 cell">
+                <input type=submit class="button primary large expanded" value="Add Item"/>
+              </div>
+              <div class="large-6 cell">
+                  <a href="{{ url_for('home') }}" class="button secondary large expanded">Done</a>
+              </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="large-6 cell">
+                <input type="button" class="button success large expanded" id="scanButton" value="Use Camera"/>
+            </div>
+        </div>
+    </form>
+
+    <div class="grid-x grid-padding-x">
+            <div class="large-6 cell">
+                <div id="reader" width="600px"></div>
+            </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/html5-qrcode.min.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/qrScanner.js') }}" ></script>
+
+</body>
+
+{% endblock %}
+
+

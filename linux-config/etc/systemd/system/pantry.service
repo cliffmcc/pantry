@@ -1,0 +1,13 @@
+[Unit]
+Description=Pantry.service
+After=network.target
+
+[Service]
+User=pi
+Group=www-data
+WorkingDirectory=/var/www/pantry-web/
+ExecStart=/home/pi/.local/bin/gunicorn --workers 3 --bind unix:/var/www/pantry-web/pantry-web.sock -m 007 pantry:app
+
+[Install]
+WantedBy=multi-user.target
+

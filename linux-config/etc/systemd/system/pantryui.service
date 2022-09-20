@@ -1,0 +1,17 @@
+[Unit]
+Description=Pantry UI Auto-start
+Requires=graphical.target pantry.service nginx.service
+After=graphical.target pantry.service
+
+[Service]
+Environment=DISPLAY=:0.0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+Type=simple
+ExecStart=/bin/bash /home/pi/pantryui.sh
+Restart=on-abort
+User=pi
+Group=pi
+
+[Install]
+WantedBy=graphical.target
+

@@ -1,0 +1,18 @@
+.pantry-table { padding-right: 10px; padding-left: 10px }
+.pantry-add { padding-bottom: 100px }
+.edit-image { padding-bottom: 20px }
+
+#interactive.viewport {
+  width: 640px;
+  height: 480px;
+}
+
+#interactive.viewport canvas, video {
+  float: left;
+  width: 640px;
+  height: 480px;
+}
+
+#interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
+  margin-left: -640px;
+}

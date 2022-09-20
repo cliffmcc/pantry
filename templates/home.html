@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block body %}
+<body>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='js/DataTables/datatables.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pantry.css') }}"/>
+<script type="text/javascript" src="{{ url_for('static', filename='js/DataTables/datatables.js') }}"></script>
+
+<script>
+    $(document).ready( function () {
+        $('#products').DataTable( {
+            paging: false,
+            responsive: false,
+            rowGroup: {
+               dataSrc: 1
+            },
+            fixedHeader: {
+                header: true,
+                footer: true
+            },
+            columnDefs: [
+                { orderable: false, targets: [0,5] }
+            ],
+        });
+    } );
+</script>
+
+<div class="grid-x grid-padding-x">
+    <div class="large-12 cell">
+        <h1>Pantry</h1>
+    </div>
+</div>
+<hr>
+
+ <div class="grid-x grid-padding-x">
+     <div class="large-6 medium-6 cell">
+         <h5>To remove an item, click the button below.</h5>
+     </div>
+    <div class="large-6 medium-6 cell">
+        <a href="add" class="button primary large expanded">Add Items
+        </a>
+     </div>
+ </div>
+
+<div class="pantry-table">
+    <table class="table-scroll order-column" id="products" data-order='[[ 4, "des" ]]'>
+        <thead>
+        <tr>
+            <th data-priority="1"></th>
+            <th data-priority="6">UPC</th>
+            <th data-priority="4">Brand</th>
+            <th data-priority="5">Name</th>
+            <th data-priority="3" width="100">Date on Shelf</th>
+            <th data-priority="2">Image</th>
+            <th data-priority="1"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in g.products %}
+            {%  for item in product.items %}
+                <tr>
+                    <td><a href="remove/{{ item.id }}" class="success button">Remove</a></td>
+                    <td>{{ product.upc }}</td>
+                    <td>{{ product.brand }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ item.storeDate.strftime('%d-%b') }}</td>
+                    <td><img src="{{ product.thumbnail }}"/></td>
+                    <td><a href="edit/{{ product.upc }}" class="primary button">Edit</a></td>
+                </tr>
+            {%  endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+{% endblock %}
+

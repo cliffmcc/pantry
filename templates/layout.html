@@ -1,0 +1,37 @@
+<!doctype html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Pantry</title>
+    <link rel="stylesheet" href="../static/css/foundation.css">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="grid-x grid-padding-x">
+          <div class="large-12 cell">
+            <div class="callout">
+        {% for category, message in messages %}
+            {% if category == "message" %}
+                <span class="label primary">
+            {% else %}
+                <span class="label alert">
+            {% endif %}
+            {{ message }}</span>
+        {% endfor %}
+            </div>
+          </div>
+      </div>
+      {% endif %}
+    {% endwith %}
+ </head>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+
+{% block body %}{% endblock %}
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/foundation.js') }}"></script>
+
+</html>
