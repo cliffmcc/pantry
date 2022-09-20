@@ -7,6 +7,11 @@ import configparser
 from peewee import *
 from playhouse.db_url import connect
 
+# Pantry.ini should contain a database config key such as...
+#
+# [Database]
+# DBURL=mysql+pool://<DBuser>>:<DBpassword>@<hostname>:3307/pantry?max_connections=5&stale_timeout=300
+
 config = configparser.ConfigParser()
 config.read('pantry.ini')
 config_db = config['Database']
