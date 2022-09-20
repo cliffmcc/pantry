@@ -3,6 +3,7 @@ from flask import Flask, render_template, g, flash, request, session
 from pantryDB import pantryDB
 
 app = Flask("pantry")
+# Change this key to something new before you deploy
 app.secret_key = b'uI65Rtp8QseWfiU72cUh'
 
 
